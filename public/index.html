@@ -1,151 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
-    body {
-      margin: 20px;
-      color: #666;
-      background-color: #eee;
-      font: 1rem/1.25 'Mukta Mahee', sans-serif;
-    }
+      body {
+        margin: 20px;
+        color: #666;
+        background-color: #eee;
+        font: 1rem/1.25 "Mukta Mahee", sans-serif;
+      }
 
-    .placeholder {
+      .placeholder {
+        background-image: paint(placeholder-box);
+        background-color: #fff;
+        max-width: 100%;
+        border: 2px solid #666;
+        overflow: auto;
+        resize: both;
+      }
 
+      header {
+        width: 600px;
+        height: 100px;
+        margin: 0 auto;
+      }
 
-      background-image: paint(placeholder-box);
-      background-color: #fff;
-      max-width: 100%;
-      border: 2px solid #666;
-      overflow: auto;
-      resize: both;
-    }
+      .content-wrapper {
+        display: flex;
+        width: 600px;
+        margin: 40px auto 0;
+        font-size: 1.25rem;
+        line-height: 1;
+      }
 
-    header {
-      width: 600px;
-      height: 100px;
-      margin: 0 auto;
-    }
+      main {
+        width: 440px;
+      }
 
-    .content-wrapper {
-      display: flex;
-      width: 600px;
-      margin: 40px auto 0;
-      font-size: 1.25rem;
-      line-height: 1;
-    }
+      h1 {
+        margin: 0;
+        font-weight: normal;
+      }
 
-    main {
-      width: 440px;
-    }
+      p {
+        line-height: 1.25;
+      }
 
-    h1 {
-      margin: 0;
-      font-weight: normal;
-    }
+      .row {
+        margin: 0 10px 0 -10px;
+      }
 
-    p {
-      line-height: 1.25;
-    }
+      .row::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
 
-    .row {
-      margin: 0 10px 0 -10px;
-    }
+      main .placeholder {
+        float: left;
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+      }
 
-    .row::after {
-      content: '';
-      display: block;
-      clear: both;
-    }
+      aside {
+        width: 140px;
+        margin-left: 20px;
+      }
 
-    main .placeholder {
-      float: left;
-      width: 100px;
-      height: 100px;
-      margin: 10px;
-    }
+      aside .placeholder {
+        width: 140px;
+        height: 320px;
+        margin: 0 auto;
+      }
 
-    aside {
-      width: 140px;
-      margin-left: 20px;
-    }
+      .warning {
+        display: none;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 20px;
+        border-top: 4px dashed #e8590c;
+        background-color: #ffe8cc;
+        color: #e8590c;
+        text-align: center;
+      }
 
-    aside .placeholder {
-      width: 140px;
-      height: 320px;
-      margin: 0 auto;
-    }
+      .no-support .warning {
+        display: block;
+      }
 
-    .warning {
-      display: none;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      padding: 20px;
-      border-top: 4px dashed #e8590c;
-      background-color: #ffe8cc;
-      color: #e8590c;
-      text-align: center;
-    }
-
-    .no-support .warning {
-      display: block;
-    }
-
-    .warning .fas {
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-  </style>
-</head>
-<body>
-   
+      .warning .fas {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
     <header class="placeholder"></header>
     <div class="content-wrapper">
       <main>
-        <h1>Awesome Mockup</h1>
-        <p>This uses placeholder boxes created with the CSS Paint API. Neat! You can resize them by dragging their bottom right corners.</p>
         <div class="row">
           <div class="placeholder"></div>
           <div class="placeholder"></div>
           <div class="placeholder"></div>
         </div>
-        <p>That's all. Thanks!</p>
       </main>
       <aside>
         <div class="placeholder"></div>
       </aside>
     </div>
-    <div class="warning">
-        <i class="fas fa-exclamation-triangle"></i><br>
-        This Houdini demo requires the <strong>CSS Paint API</strong>.<br>
-        Use <strong>Chrome</strong>.<br>
-        Also make sure you're serving over <strong>https</strong> or <strong>localhost</strong>.
-      </div>
-
-</body>
-<script>
-    if ('paintWorklet' in CSS) {
+    <nav>
+      <a href="/properties">Custom Properties</a>
+      <a href="/paint-api-1"> Ejemplo paint 1</a>
+      <a href="/brush">Ejemplo Paint 2</a>
+      <a href="/animation">Animaciones</a>
+    </nav>
+  </body>
+  <script>
+    if ("paintWorklet" in CSS) {
       // load this CodePen's JS file as the paint worklet
-      CSS.paintWorklet.addModule('./PlaceholderBoxPainter.js');
+      CSS.paintWorklet.addModule("./PlaceholderBoxPainter.js");
     } else {
-      document.querySelector('html').classList.add('no-support');
+      document.querySelector("html").classList.add("no-support");
     }
-</script>
-  
+  </script>
 </html>
 
 <script>
-
   /*
   
   CSS.registerProperty({
@@ -163,5 +155,4 @@
   });
 
   */
- 
- </script>
+</script>

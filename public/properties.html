@@ -1,44 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      CSS.registerProperty({
+        name: "--registered-color",
+        syntax: "<color>",
+        inherits: true,
+        initialValue: "rebeccapurple"
+      });
+    </script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      .registered-demo {
+        --registered-color: #c0ffee;
+        background: linear-gradient(white, var(--registered-color));
+        transition: --registered-color 1s;
+        height: 3em;
+      }
 
-    CSS.registerProperty({
-      name: '--registered-color',
-      syntax: '<color>',
-      inherits: true,
-      initialValue: 'rebeccapurple'
-    });
-  
-   
-  </script>
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    .registered-demo {
-      --registered-color: #c0ffee;
-      background: linear-gradient(white, var(--registered-color));
-      transition: --registered-color 1s;
-      height: 3em;
-    }
-
-    .registered-demo:hover {
-      --registered-color: #bada55;
-    }
-   
-  </style>
-</head>
-<body>
-   <button class="registered-demo">
+      .registered-demo:hover {
+        --registered-color: #bada55;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="registered-demo">
       Prueba de houdini
-   </button>
-
-   <button class="unregistered-demo">
-    Prueba de houdini
- </button>
-</body>
+    </button>
+  </body>
 </html>
