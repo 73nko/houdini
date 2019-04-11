@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .big {
+      min-height: 2000px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+    <div class="big">
+        <div id="my-elem">Hello World</div>
+    </div>
+<script>
+   
+  // Element we want to animate
+  const elem = document.querySelector('#my-elem');
+  const scrollSource = document.scrollingElement;
+  const timeRange = 1000;
+  const scrollTimeline = new ScrollTimeline({
+    scrollSource,
+    timeRange,
+  });
+
+  const effectKeyframes = new KeyframeEffect(
+    elem,
+    [
+      {transform: 'scale(1)'},
+      {transform: 'scale(.25)'},
+      {transform: 'scale(1)'}
+    ],
+    {
+      duration: timeRange,
+    },
+  );
+  const startAnimation = async () => {
+    await CSS.animationWorklet.addModule('animation.js');
+    new WorkletAnimation(
+      'sample-animator',
+      effectKeyframes,
+      scrollTimeline,
+      {},
+    ).play();
+  };
+
+  startAnimation();
+
+</script>
+
+</body>
+</html>

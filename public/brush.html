@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+  <style>
+    .paint-api {
+      --brush-color: brown;
+      background-image: paint(brushstroke);
+    }
+  </style>
+<body>
+    <div>
+
+      <span class="paint-api">PRUEBA</span>
+    </div>
+</body>
+<script>
+  if ('paintWorklet' in CSS) {
+
+    CSS.registerProperty({
+    name: '--brush-color',
+    syntax: '<color>',
+    inherits: true,
+    initialValue: '#784ca5',
+  });
+    // load this CodePen's JS file as the paint worklet
+    CSS.paintWorklet.addModule('./brushstroke.js');
+  } else {
+    document.querySelector('html').classList.add('no-support');
+  }
+</script>
+</html>

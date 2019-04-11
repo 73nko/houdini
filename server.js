@@ -10,9 +10,21 @@ var express = require("express"),
 app.get("/", function (req, res) {
   res.sendFile(path.join(publicDir, "/index.html"));
 });
+app.get("/properties", function (req, res) {
+  res.sendFile(path.join(publicDir, "/properties.html"));
+});
 
-app.get("/worklet", function (req, res) {
-  res.sendFile(path.join(publicDir, "/PlaceholderBoxPainter.js"));
+app.get("/brush", function (req, res) {
+  res.sendFile(path.join(publicDir, "/brush.html"));
+});
+
+
+app.get("/paint-api-1", function (req, res) {
+  res.sendFile(path.join(publicDir, "/click-paint.html"));
+});
+
+app.get("/animation", function (req, res) {
+  res.sendFile(path.join(publicDir, "/animation.html"));
 });
 
 app.use(bodyParser.urlencoded({
